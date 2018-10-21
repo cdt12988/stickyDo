@@ -1,0 +1,28 @@
+{{> homeheader }}
+
+	{{#if errors}}
+		<ul class="">
+		{{#each errors}}
+			<li class="">{{this.msg}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+
+	<div class="main-container">
+		<h1 id="login-header"><a href="/"><span id="stickydo">StickyDo</span></a></h1>
+		<div class="form-container">
+			<form method=POST action="/login" class="note-stack yellow" id="note-form">
+				<div class="">
+					<label for="username">Username</label>
+					<input type="text" name="username" class="" placeholder="Username">
+				</div>
+				<div class="">
+					<label for="password">Password</label>
+					<input type="password" name="password" class="" placeholder="Password">
+				</div>
+				<button type="submit" class="">Login</button>
+			</form>
+		</div>
+	</div>
+	
+{{> footer }}

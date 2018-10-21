@@ -1,0 +1,28 @@
+{{> header }}
+
+<div class="">
+
+	{{#if errors}}
+		<ul class="">
+		{{#each errors}}
+			<li class="">{{this.msg}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+	
+	<h2>Login</h2>
+
+	<form method=POST action="/login">
+		<div class="">
+			<label for="username">Username</label>
+			<input type="text" name="username" class="" placeholder="Username">
+		</div>
+		<div class="">
+			<label for="password">Password</label>
+			<input type="password" name="password" class="" placeholder="Password">
+		</div>
+		<button type="submit" class="">Login</button>
+	</form>
+</div>
+
+{{> footer }}

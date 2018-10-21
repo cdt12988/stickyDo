@@ -1,0 +1,613 @@
+/*========== GLOBAL STYLES ==========*/
+
+body {
+	font-family: ariel, sans-serif;
+	
+	height: 100vh;
+	width: 100vw;
+	min-height: 100vh;
+	min-width: 100vw;
+	
+/* 	background-image: linear-gradient(#AAA, #EEE); */
+	background-image: url("../images/tabletop2.jpg");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	
+	display: grid;
+	grid:
+		"board" 60%
+		"table" 40%
+		/ 100%;
+		
+	justify-content: center;
+	align-items: center;
+}
+
+/*========== PUBLIC LANDING PAGES ==========*/
+
+.main-container {
+	padding: 0 15px;
+	grid-area: board;
+	text-align: center;
+}
+.main-container h1 {
+	position: absolute;
+}
+.main-container a {
+	text-decoration: none;
+	color: inherit;
+}
+#login-header {
+	width: 100%;
+	z-index: 1;
+}
+#stickydo {
+	font-family: 'Reenie Beanie', cursive;
+	font-size: 1.25em;
+}
+#note-form {
+	position: static;
+}
+#note-form2 {
+	position: static;
+	margin-left: 1em;
+}
+.nav {
+	list-style: none;
+	position: absolute;
+	top: 45%;
+}
+.nav li {
+	display: inline;
+	margin-left: 1em;
+	cursor: pointer;
+	transition: all .2s ease-in;
+}
+.nav li:hover {
+	transform: scale(1.1);
+	color: lightgray;
+}
+.nav a {
+	text-decoration: none;
+	color: inherit;
+}
+.form-container {
+	margin: 0 auto;
+	width: 500px;
+	width: 80%;
+	height: 500px;
+	border-radius: 1em;
+	background: lightgreen;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background-image: url("https://st.depositphotos.com/1010683/2512/i/950/depositphotos_25121993-stock-photo-cork-board-background.jpg");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-shadow: 0px 0px 0px 7px rgba(0, 0, 0, 0.65), 0px 0px 0px 10px rgba(0, 0, 0, 0.5), 2px 2px 184px 3px rgba(0,0,0,0.58), 1px 14px 43px 17px rgba(0,0,0,0.58);
+}
+#register-form {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.form-container input {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 0.5em;
+	border-radius: 5px;
+	outline: none;
+}
+.form-container input:focus {
+	outline: 2px solid lightgray;
+}
+.form-container button {
+	padding: 1em 1.5em;
+	border-radius: 1em;
+	cursor: pointer;
+	background: aqua;
+	color: black;
+	font-family: 'Reenie Beanie', cursive;
+}
+.form-container button:hover {
+	background: lightgray;
+	color: black;
+}
+
+/*========== Board ==========*/
+
+#board-container {
+	grid-area: board;
+	margin: 25px;
+	margin-top: 60px;
+	background-image: url("https://st.depositphotos.com/1010683/2512/i/950/depositphotos_25121993-stock-photo-cork-board-background.jpg");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	box-shadow: 0px 0px 0px 7px rgba(0, 0, 0, 0.65), 0px 0px 0px 10px rgba(0, 0, 0, 0.5), 2px 2px 184px 3px rgba(0,0,0,0.58), 1px 14px 43px 17px rgba(0,0,0,0.58);
+	
+	height: 100%;
+	display: grid;
+	grid:
+		"todo inprogress" 100%
+		/ 50% 50%;
+}
+#board,
+#in_progress {
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+}
+#board {
+	grid-area: todo;
+	border-right: 8px dashed rgba(0, 0, 0, 0.75);
+}
+#in_progress {
+	grid-area: inprogress;
+}
+
+/*========== TABLE/DESK ==========*/
+
+#table-container {
+	grid-area: table;
+	
+	height: 100%;
+	display: grid;
+	grid:
+		"trash notepad completed" 100%
+		/ 30% 40% 30%;
+}
+
+/*=== TRASH ===*/
+
+#trash-container {
+	grid-area: trash;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#trash, #completed {
+	position: relative;
+	z-index: 1;
+	
+	min-height: 350px;
+	width: 80%;
+
+	transition: transform 150ms linear;
+	
+	cursor: pointer;
+}
+#trash {
+	background-image: url("../images/recyclebin-full.png");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/*=== NOTEPAD ===*/
+
+#notepad {
+	grid-area: notepad;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#stack-container {
+	position: relative;
+	top: 40%;
+	top: 35%;
+	top: 45%;
+	right: 15%;
+}
+.note-stack {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	outline: 1px solid rgba(0, 0, 0, 0.25);
+}
+#initial {
+	box-shadow: -11px 13px 48px 2px rgba(0,0,0,0.73);
+/* 	box-shadow: -37px 33px 60px 1px rgba(0,0,0,0.84); */
+}
+#last {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+#last input,
+#last textarea {
+/* 	background: rgba(0, 0, 0, 0.05); */
+	background: transparent;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+/* 	margin: 2px 0px; */
+/* 	box-shadow: 0 2px 10px 1px rgba(0,0,0,0.5); */
+	text-align: center;
+}
+#last input:focus,
+#last textarea:focus {
+/* 	box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.25); */
+	background: rgba(0, 0, 0, 0.05);
+}
+#name {
+	padding: 3px 0;
+	padding-bottom: 3px;
+	width: 95%;
+}
+#content {
+/* 	padding-top: 5px; */
+	line-height: 1.25em;
+	overflow: hidden;
+}
+#submit {
+	font-family: 'Fredoka One', cursive;
+	font-size: 1em;
+	color: aliceblue;
+	
+	padding: 5px 10px;
+	margin-top: 2.5px;
+	cursor: pointer;
+	
+	position: absolute;
+	right: 2.5%;
+	bottom: 2.5%;
+	
+/* 	background: black; */
+	background: rgba(46,139,87, 0.8) !important;
+	border-radius: 50% !important;
+}
+
+/*=== COMPLETED JAR ===*/
+
+#jar-container {
+	grid-area: completed;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#completed {
+/* 	min-height: 250px; */
+	height: 225px;
+	width: 225px;
+	
+	background-image: url("../images/jar3.png");
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+#label {
+	position: relative;
+	top: 50%;
+	
+	font-family: 'Indie Flower', cursive;
+	font-family: 'Permanent Marker', cursive;
+	font-size: 1.5em;
+}
+
+/*========== Notes ==========*/
+
+.note {
+	font-family: 'Reenie Beanie', cursive;
+	margin: 1em;
+
+	position: absolute;
+	z-index: 1;
+//	left: 125px;
+//	float: left;
+}
+.note a,
+.note-stack {
+	display: block;
+	height: 10em;
+	width: 10em;
+	min-height: 175px;
+	min-width: 175px;
+	max-height: 20vh;
+	max-width: 20vw;
+	padding: 1em;
+
+	box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+	transition: transform 150ms linear;
+}
+.note h2,
+.note p,
+#name,
+#content {
+	font-size: 100%;
+	font-weight: normal;
+	text-align: center;
+}
+.note h2,
+#name {
+	font-size: 140%;
+	font-size: 1em;
+	font-weight: 200;
+	
+	font-family: ariel, sans-serif;
+	font-family: 'Fredoka One', cursive;
+}
+.note h2 {
+	padding-bottom: 10px;
+}
+.note p,
+#content {
+	font-size: 180%;
+	font-size: 1.5em;
+	font-family: 'Indie Flower', cursive;
+}
+.grabbed {
+	box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7) !important;
+	transform: scale(1.25) !important;
+	z-index: 100;
+	cursor: grabbing !important;
+}
+.yellow {
+	background: #FFC;
+}
+.rot-1 {
+	transform: rotate(1deg);
+}
+.rot-1n {
+	transform: rotate(-1deg);
+}
+.rot-2 {
+	transform: rotate(2deg);
+}
+.rot-2n {
+	transform: rotate(-2deg);
+}
+.rot-3 {
+	transform: rotate(3deg);
+}
+.rot-3n {
+	transform: rotate(-3deg);
+}
+.rot-4 {
+	transform: rotate(4deg);
+}
+.rot-4n {
+	transform: rotate(-4deg);
+}
+.rot-5 {
+	transform: rotate(5deg);
+}
+.rot-5n {
+	transform: rotate(-5deg);
+}
+.rot-6 {
+	transform: rotate(6deg);
+}
+.rot-6n {
+	transform: rotate(-6deg);
+}
+
+/*========== Name Plate ==========*/
+
+#nameplate-container,
+.board-label {
+	position: absolute;
+	bottom: 200px;
+	padding: 1em 2em;
+	min-width: 425px;
+	
+	cursor: pointer;
+	
+	background: gray;
+	
+	font-size: 38px;
+	text-align: center;
+	
+/*
+	border-top: 5px solid lightyellow;
+	border-bottom: 5px solid lightyellow;
+*/
+	
+	
+	color: hsla(0,0%,20%,1);
+	text-shadow: hsla(0,0%,40%,.5) 0 -1px 0, hsla(0,0%,100%,.6) 0 2px 1px;
+	
+	background-color: hsl(0,0%,90%);
+	box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 4px, /* border */
+	inset hsla(0,0%,15%, .8) 0 -1px 5px 4px, /* soft SD */
+	inset hsla(0,0%,0%, .25) 0 -1px 0px 7px, /* bottom SD */
+	inset hsla(0,0%,100%,.7) 0  2px 1px 7px, /* top HL */
+	
+	hsla(0,0%, 0%,.15) 0 -5px 6px 4px, /* outer SD */
+	-162px 65px 58px 23px rgba(0,0,0,0.58);
+	/*     hsla(0,0%,100%,.5) 0  5px 6px 4px; /* outer HL */  */
+	
+	transition: color .2s;
+	
+	background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+	-webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+	-webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+	
+	linear-gradient(180deg, hsl(0,0%,78%)  0%, 
+	hsl(0,0%,90%) 47%, 
+	hsl(0,0%,78%) 53%,
+	hsl(0,0%,70%)100%);
+
+}
+.board-label {
+	top: 6%;
+	bottom: auto;
+	min-width: 0;
+	width: 225px;
+	font-size: 1.5em;
+	box-shadow: -1px 1px 0 black;
+}
+#todo-label {
+	transform: rotate(-15deg);
+	box-shadow: -1px 1px 0 black;
+	left: 4%;
+}
+#progress-label {
+	transform: rotate(15deg);
+	box-shadow: 1px 1px 0 black;
+	right: 4%;	
+}
+
+#logout {
+	position: absolute;
+	top: 2.5%;
+	right: 2.5%;
+	
+	font-family: 'Reenie Beanie', cursive;
+	font-size: 1.25em;
+}
+#logout:hover {
+	color: lightgray;
+}
+
+/*========== Pop-Ups ==========*/
+
+.faded {
+	opacity: 0.6;
+}
+#in_jar {
+	box-shadow: 1px 19px 21px 13px rgba(0,0,0,0.58);
+}
+.paper {
+	position: absolute;
+	height: 550px;
+	width: 450px;
+	background: rgba(255, 255, 255, 0.9);
+	margin: -275px -225px;
+	left: 50%;
+	top: 50%;
+	box-shadow: 0px 0px 5px 0px #888;
+	z-index: 1000;
+}
+.paper::before {
+	content: '';
+	position: absolute;
+	left: 45px;
+	height: 100%;
+	width: 2px;
+	background: rgba(255,0,0,0.4);
+}
+.lines {
+	margin-top: 40px;
+	height: calc(100% - 40px);
+	width: 100%;
+	background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+}
+.heading {
+	position: absolute;
+	top: 47.5px;
+
+	font-family: 'Fredoka One', cursive;
+	font-size: 1.25em;
+}
+#trash-heading {
+	left: 182px;
+}
+#jar-heading {
+	left: 182px;
+}
+#profile-heading {
+	left: 194px;
+}
+.text {
+	position: absolute;
+	top: 65px;
+	left: 36px;
+	bottom: 10px;
+	right: 10px;
+	line-height: 25px;
+/* 	font-family: 'Indie Flower'; */
+	font-family: 'Reenie Beanie', cursive;
+	overflow: auto;
+	outline: none;
+}
+.text h3 {
+	text-align: left;
+	font-family: 'Fredoka One', cursive;
+	font-size: 0.9em;
+	padding-left: 15px;
+}
+.text ul {
+	list-style: circle;
+}
+.text li {
+//	margin-top: 1.5px;
+	list-style: circle;
+	font-size: 1.5em;
+}
+.holes {
+	position: absolute;
+	left: 10px;
+	height: 25px;
+	width: 25px;
+	background: lightgoldenrodyellow;
+	border-radius: 50%;
+/* 	box-shadow: inset 0px 0px 2px 0px #888; */
+	box-shadow: inset 2px 2px 184px 35px rgba(0, 0, 0, 0.3);
+/* 	background: rgba(0, 0, 0, 0.25); */
+	opacity: 0.5;
+}
+.hole-top {
+	top: 10%;
+}
+.hole-middle {
+	top: 50%;
+}
+.hole-bottom {
+	bottom: 10%;
+}
+
+.action-container {
+	display: inline-block;
+	float: right;
+	margin-right: 8px;
+}
+.action-btn {
+	padding: 0 0.5em;
+	border-radius: 100%;
+	margin: 0 auto;
+	cursor: pointer;
+	color: #FFF;
+}
+.del-action:hover,
+.add-action:hover {
+	background: lightgray;
+	color: black;
+}
+.del-action {
+	background: red;
+}
+.add-action {
+	background: green;
+}
+
+/*========== JAVASCRIPT ==========*/
+
+.hover {
+	animation-name: wobble;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-duration: 1.25s;
+}
+
+@keyframes wobble {
+	0% { transform: rotate(0deg) scale(1); }
+	25% { transform: rotate(-7deg) scale(1.1); }
+	50% { transform: rotate(0deg) scale(1); }
+	75% { transform: rotate(7deg) scale(1.1); }
+}
+
+.js-hidden {
+	display: none;
+}

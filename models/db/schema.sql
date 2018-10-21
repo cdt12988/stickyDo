@@ -1,0 +1,51 @@
+CREATE DATABASE IF NOT EXISTS stickydo_db;
+
+USE stickydo_db;
+
+CREATE TABLE users (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(15) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    hashed_password BINARY(60) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    password_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_authenticated BOOLEAN DEFAULT FALSE
+) ENGINE=InnoDB;
+
+CREATE TABLE notes (
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(35),
+	content TEXT(255) NOT NULL,
+	user_id INT(11) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	note_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	complete_by DATETIME,
+	color VARCHAR(25) DEFAULT 'yellow',
+	x_pos INT,
+	y_pos INT,
+	on_board BOOLEAN DEFAULT TRUE,
+	in_progress BOOLEAN DEFAULT FALSE,
+	completed BOOLEAN DEFAULT FALSE,
+	in_trash BOOLEAN DEFAULT FALSE,
+	FOREIGN KEY fk_user_notes(user_id)
+	REFERENCES users(id)
+	ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE notepads (
+	id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_id INT(11) NOT NULL,
+	color VARCHAR(25) DEFAULT 'yellow',
+	include_timestamp BOOLEAN DEFAULT FALSE,
+	include_complete_by BOOLEAN DEFAULT FALSE,
+	FOREIGN KEY fk_user_notepads(user_id)
+	REFERENCES users(id)
+	ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE INDEX username_index
+ON users (username);
+
+CREATE INDEX email_index
+ON users (email);

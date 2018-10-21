@@ -1,0 +1,149 @@
+{{> newheader }}
+	
+	<div id="board-container">
+		<ul id="board">
+			<li class="board-label" id="todo-label">
+				<h2>ToDo</h2>
+			</li>
+			{{#each notes}}
+				{{#if this.attributes.on_board}}
+					{{> note }}
+				{{/if}}
+			{{/each}}
+		</ul>
+	
+		<ul id="in_progress">
+			<li class="board-label" id="progress-label">
+				<h2>In Progress</h2>
+			</li>
+			{{#each notes}}
+				{{#if this.attributes.in_progress}}
+					{{> note }}
+				{{/if}}
+			{{/each}}
+		</ul>
+	
+	</div>
+	
+	<div id="table-container">
+	
+		<div id="trash-container">
+			<ul id="trash"></ul>
+		</div>
+		
+		<div id="notepad">
+			{{!--<form">
+				<input type="text" id="name" placeholder="Heading...">
+				<textarea id="content" placeholder="Note..." rows="8" cols="20"></textarea>
+				<input type="submit" id="submit" value="New Note">
+			</form>--}}
+			<div id="nameplate-container">
+				<div id="nameplate">{{user.username}}</div>
+			</div>
+			<div id="stack-container">
+				<div id="initial" class="note-stack yellow"></div>
+			</div>
+		</div>
+		
+		<div id="jar-container">
+			<ul id="completed"><span id="label">COMPLETED</span></ul>
+			
+		</div>
+		
+	</div>
+	
+	<div id="in_trash" class="paper js-hidden">
+		<div class="lines">
+			<div id="trash-heading" class="heading">
+				<h2>Trashed</h2>
+			</div>
+			<div class="text">
+				<ul id="trash-list">
+					{{#each notes}}
+						{{#if this.attributes.in_trash}}
+							{{> list }}
+						{{/if}}
+					{{/each}}
+				</ul>
+			</div>
+			<div class="holes hole-top"></div>
+			<div class="holes hole-middle"></div>
+			<div class="holes hole-bottom"></div>
+		</div>
+	</div>
+	
+	<div id="in_jar" class="paper js-hidden">
+		<div class="lines">
+			<div id="jar-heading" class="heading">
+				<h2>Completed</h2>
+			</div>
+			<div class="text">
+				<ul id="jar-list">
+					{{#each notes}}
+						{{#if this.attributes.completed}}
+							{{> list }}
+						{{/if}}
+					{{/each}}
+				</ul>
+			</div>
+			<div class="holes hole-top"></div>
+			<div class="holes hole-middle"></div>
+			<div class="holes hole-bottom"></div>
+		</div>
+	</div>
+	
+	<div id="profile" class="paper js-hidden">
+		<div class="lines">
+			<a id="logout" href="/logout">Logout</a>
+			<div id="profile-heading" class="heading">
+				<h2>{{user.username}}</h2>
+			</div>
+			<div class="text">
+				<h3>ToDo</h3>
+				<ul id="profile-todo">
+				{{!--
+				{{#each notes}}
+					{{#if this.attributes.on_board}}
+						{{> shortlist }}
+					{{/if}}
+				{{/each}}
+				--}}
+				</ul>
+				<br>
+				<h3>In Progress</h3>
+				<ul id="profile-progress">
+				{{!--
+				{{#each notes}}
+					{{#if this.attributes.in_progress}}
+						{{> shortlist }}
+					{{/if}}
+				{{/each}}
+				--}}
+				</ul>
+				<br>
+				<h3>Completed</h3>
+				<ul id="profile-completed">
+				{{!--
+				{{#each notes}}
+					{{#if this.attributes.completed}}
+						{{> list }}
+					{{/if}}
+				{{/each}}
+				--}}
+				</ul>
+				<br>
+				<h3>Trashed</h3>
+				<ul id="profile-trash">
+				{{!--
+				{{#each notes}}
+					{{#if this.attributes.in_trash}}
+						{{> list }}
+					{{/if}}
+				{{/each}}
+				--}}
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+{{> footer }}

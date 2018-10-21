@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>{{ title }}</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico ini the root directory -->
+		<link rel="stylesheet" href="assets/styles/notes.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="assets/scripts/notes.js"></script>
+	</head>
+	
+	<body>
+		<!--[if lt IE 8]>
+			<p class="browserupgrade">
+				You are using an <strong>outdated</strong> browser.  Please <a href="http://browsehappy.com">upgrade</a> to improve your experience.
+			</p>
+		<!--[endif]-->
+
+		<!-- Insert any nav or other header material here -->
+		<div class="">
+			<ul>
+				<li><a href="/">Home</a></li>
+
+			{{#if isAuthenticated}}
+				<li><a href="/profile">Profile</a></li>
+				<li><a href="/logout">Logout</a></li>
+			{{else}}
+				<li><a href="/register">Register</a></li>
+				<li><a href="/login">Login</a></li>
+			{{/if}}
+
+			</ul>
+		</div>

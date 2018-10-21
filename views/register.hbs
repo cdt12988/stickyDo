@@ -1,0 +1,40 @@
+{{> homeheader }}
+
+	{{#if errors}}
+		<ul class="">
+		{{#each errors}}
+			<li class="">{{this.msg}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+		
+	<div class="main-container">
+		<h1 id="login-header"><a href="/"><span id="stickydo">StickyDo</span></a></h1>
+		<div class="form-container">
+			<form id="register-form" method=POST action="/register">
+				<div class="note-stack yellow" id="note-form">
+					<div class="">
+						<label for="username">Username</label>
+						<input type="text" name="username" class="" placeholder="Username">
+					</div>
+					<div class="">
+						<label for="email">Email</label>
+						<input type="email" name="email" class="" placeholder="Email">
+					</div>
+				</div>
+				<div class="note-stack yellow" id="note-form2">
+					<div class="">
+						<label for="password">Password</label>
+						<input type="password" name="password" class="" placeholder="Password">
+					</div>
+					<div class="">
+						<label for="confirm_password">Confirm Password</label>
+						<input type="password" name="confirm_password" class="" placeholder="Confirm Password">
+					</div>
+					<button type="submit" class="">Register</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{{> footer }}
