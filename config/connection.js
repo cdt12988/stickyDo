@@ -4,7 +4,7 @@ var mysql = require('mysql');
 //		* Find your mysql socket path in terminal by typing: netstat -ln | grep mysql
 //		* Copy the path and add the following property-value pair after the database: DB_NAME, pair:
 //		* socketPath: 'path/to/copied/socket'
-
+var connection;
 if(process.env.JAWSDB_URL){
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
